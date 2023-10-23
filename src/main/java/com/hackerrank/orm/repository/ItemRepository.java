@@ -14,6 +14,7 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     @Query("SELECT i " +
             "FROM Item i " +
             "WHERE i.itemStatus = :status " +
-            "AND i.itemEnteredByUser = :enteredBy")
+            "AND i.itemEnteredByUser = :enteredBy " +
+            "GROUP BY i.itemStatus, i.itemId")
     List<Item> findByStatusAndUser(ItemStatus status, String enteredBy);
 }
